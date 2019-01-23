@@ -1,6 +1,17 @@
+>This repository is part of the [Pelias](https://github.com/pelias/pelias)
+>project. Pelias is an open-source, open-data geocoder originally sponsored by
+>[Mapzen](https://www.mapzen.com/). Our official user documentation is
+>[here](https://github.com/pelias/documentation).
+
+# Pelias Elasticsearch database client
+
+This module provides a Node.js stream for bulk-inserting documents into [Elasticsearch](https://www.elastic.co/products/elasticsearch).
+
+[![Build Status](https://travis-ci.org/pelias/dbclient.png?branch=master)](https://travis-ci.org/pelias/dbclient)
+[![Greenkeeper badge](https://badges.greenkeeper.io/pelias/dbclient.svg)](https://greenkeeper.io/)
+
 ## Install Dependencies
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/pelias/dbclient.svg)](https://greenkeeper.io/)
 
 ```bash
 $ npm install
@@ -36,13 +47,13 @@ const stream = streamify([1, 2, 3])
   }))
   .pipe(dbMapper())
   .pipe(dbclient()); // put documents into elasticsearch
-    
+
 stream.on('finish', () => {
   // let's assume that documents with the same type but another timestamp (for example old copies)
   // have to be deleted
   const client = new elasticsearch.Client(config.esclient);
   elasticDeleteQuery(client);
-    
+
   const options = {
     index: config.schema.indexName,
     type: 'venue',
@@ -59,7 +70,7 @@ stream.on('finish', () => {
       }
     }
   };
-  
+
   client.deleteByQuery(options, (err, response) => {
     console.log('The elements deleted are: %s', response.elements);
   });
@@ -93,6 +104,4 @@ $ npm test
 
 ### Continuous Integration
 
-Travis tests every release against Node.js versions `4` and `6`
-
-[![Build Status](https://travis-ci.org/pelias/dbclient.png?branch=master)](https://travis-ci.org/pelias/dbclient)
+Travis tests every release against all currently supported Node.js versions.

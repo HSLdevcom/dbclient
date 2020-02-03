@@ -1,10 +1,13 @@
 
-var winston = require( 'pelias-logger' ).get( 'dbclient' );
+const pelias_logger = require( 'pelias-logger' );
 var _ = require('lodash');
 
 var max_retries = 5;
 
-function wrapper( client ){
+function wrapper( client, parent_logger ){
+
+  const logger = parent_logger ? parent_logger : pelias_logger.get('dbclient');
+
   function transaction( batch, cb ){
 
     var payload = [];
@@ -25,7 +28,7 @@ function wrapper( client ){
       client.mget(mgetParam, function(error, response) {
         // major error
         if( error ){
-          winston.error( 'esclient error', error );
+          logger.error( 'esclient error', error );
         }
         if( response && response.docs ) {
           response.docs.forEach( function( doc, i ){
@@ -77,13 +80,13 @@ function wrapper( client ){
 
         // major error
         if( err ){
-          winston.error( 'esclient error', err );
+          logger.error( 'esclient error', err );
           batch.status = 500;
         }
 
         // response does not contain items
         if( !resp || !resp.items ){
-          winston.error( 'invalid resp from es bulk index operation' );
+          logger.error( 'invalid resp from es bulk index operation' );
           batch.status = 500;
         }
 
@@ -101,7 +104,7 @@ function wrapper( client ){
             // console.log( 'set task status', task.status, JSON.stringify( action, null, 2 ) );
 
             if( task.status > 201 ){
-              winston.error( '[' + action.status + ']', action.error );
+              logger.error( '[' + action.status + ']', action.error );
             }
             // else {
             //   delete task.cmd; // reclaim memory
@@ -118,7 +121,7 @@ function wrapper( client ){
         // retry batch
         if( batch.status > 201 ){
           batch.retries++;
-          winston.info( 'retrying batch', '[' + batch.status + ']' );
+          logger.info( 'retrying batch', '[' + batch.status + ']' );
           return transaction( batch, cb );
         }
 

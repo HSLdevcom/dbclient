@@ -1,3 +1,5 @@
 node_modules
 *.log
 *.pbf
+.pnp.cjs
+.yarn

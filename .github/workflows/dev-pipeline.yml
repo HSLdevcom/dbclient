@@ -16,7 +16,7 @@ jobs:
       - name: Install Yarn
         run: corepack prepare yarn@4.13.0 --activate
       - name: Activate Yarn
-        run: yarn set version stable
+        run: yarn set version 4.13.0
       - name: Generate SBOM
         run: yarn dlx -q @cyclonedx/yarn-plugin-cyclonedx@2.0.0 --output-file ${{ github.repository }}-${{ github.sha }}.json
 

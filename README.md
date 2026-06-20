@@ -75,7 +75,7 @@ stream.on('finish', () => {
     console.log('The elements deleted are: %s', response.elements);
   });
 });
-
+```
 
 ## Update ES index by adding new fields to existing docs
 

@@ -246,9 +246,9 @@ module.exports.tests.validate = function(test, common) {
 
     t.doesNotThrow(function() {
       proxyquire('../src/configValidation', {
-        'elasticsearch': {
+        '@elastic/elasticsearch': {
           Client: function() {
-            return { indices: { exists: (indexName, cb) => { cb(false, true); } } };
+            return { indices: { exists: (indexName, cb) => { cb(null, { body: true }); } } };
           }
         }
       }).validate(config);
@@ -274,9 +274,9 @@ module.exports.tests.validate = function(test, common) {
 
     t.doesNotThrow(() => {
       proxyquire('../src/configValidation', {
-        'elasticsearch': {
+        '@elastic/elasticsearch': {
           Client: function() {
-            return { indices: { exists: (indexName, cb) => { cb(false, true); } } };
+            return { indices: { exists: (indexName, cb) => { cb(null, { body: true }); } } };
           }
         }
       }).validate(config);
@@ -311,9 +311,9 @@ module.exports.tests.validate = function(test, common) {
 
     t.throws(() => {
       proxyquire('../src/configValidation', {
-        'elasticsearch': {
+        '@elastic/elasticsearch': {
           Client: function() {
-            return { indices: { exists: (indexName, cb) => { cb(false, false); } } };
+            return { indices: { exists: (indexName, cb) => { cb(null, { body: false }); } } };
           }
         }
       }).validate(config);

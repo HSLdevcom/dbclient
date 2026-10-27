@@ -1,7 +1,8 @@
 'use strict';
 
 const Joi = require('@hapi/joi');
-const elasticsearch = require('elasticsearch');
+const { Client } = require('@elastic/elasticsearch');
+const esClientOptions = require('./esClientOptions');
 
 // Schema Configuration
 // dbclient.statFrequency: populated by defaults if not overridden
@@ -27,11 +28,11 @@ module.exports = {
     }
 
     // now verify that the index exists
-    const esclient = new elasticsearch.Client(config.esclient);
+    const esclient = new Client(esClientOptions(config.esclient));
 
     // callback that throws an error if the index doesn't exist
-    const existsCallback = (error, exists) => {
-      if (!exists) {
+    const existsCallback = (error, result) => {
+      if (error || !result.body) {
         console.error(`ERROR: Elasticsearch index ${config.schema.indexName} does not exist`);
         console.error('You must use the pelias-schema tool (https://github.com/pelias/schema/) to create the index first');
         console.error('For full instructions on setting up Pelias, see http://pelias.io/install.html');

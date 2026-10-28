@@ -1,6 +1,7 @@
-const elasticsearch = require('elasticsearch');
+const { Client } = require('@elastic/elasticsearch');
+const esClientOptions = require('./esClientOptions');
 const settings = require('pelias-config').generate();
 
 module.exports = function(){
-  return new elasticsearch.Client( settings.esclient || {} );
+  return new Client( esClientOptions( settings.esclient ) );
 };

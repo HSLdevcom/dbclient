@@ -5,6 +5,18 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@elastic/elasticsearch@npm:^7.17.14":
+  version: 7.17.14
+  resolution: "@elastic/elasticsearch@npm:7.17.14"
+  dependencies:
+    debug: "npm:^4.3.1"
+    hpagent: "npm:^0.1.1"
+    ms: "npm:^2.1.3"
+    secure-json-parse: "npm:^2.4.0"
+  checksum: 10c0/e19e04802abc40e226d5bb322f64b60aedf36c77c6bbef95d270a1efe398913efc19bba7847dd9cba3844a55d4b0a1d2fadddc5907462712548e005cb6c959da
+  languageName: node
+  linkType: hard
+
 "@hapi/address@npm:^2.1.2":
   version: 2.1.4
   resolution: "@hapi/address@npm:2.1.4"
@@ -168,15 +180,6 @@ __metadata:
   version: 1.1.0
   resolution: "@standard-schema/spec@npm:1.1.0"
   checksum: 10c0/d90f55acde4b2deb983529c87e8025fa693de1a5e8b49ecc6eb84d1fd96328add0e03d7d551442156c7432fd78165b2c26ff561b970a9a881f046abb78d6a526
-  languageName: node
-  linkType: hard
-
-"agentkeepalive@npm:^3.4.1":
-  version: 3.5.3
-  resolution: "agentkeepalive@npm:3.5.3"
-  dependencies:
-    humanize-ms: "npm:^1.2.1"
-  checksum: 10c0/6452aa599b49126db9ecf57627e312a078cebb614bcdbc2d890686447be454753bf1fc43fa10cba969ec051683652ce523413d42097f48c8bf90e46c2f99b447
   languageName: node
   linkType: hard
 
@@ -407,6 +410,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"debug@npm:^4.3.1":
+  version: 4.4.3
+  resolution: "debug@npm:4.4.3"
+  dependencies:
+    ms: "npm:^2.1.3"
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: 10c0/d79136ec6c83ecbefd0f6a5593da6a9c91ec4d7ddc4b54c883d6e71ec9accb5f67a1a5e96d00a328196b5b5c86d365e98d8a3a70856aaf16b4e7b1985e67f5a6
+  languageName: node
+  linkType: hard
+
 "deep-equal@npm:~1.1.1":
   version: 1.1.2
   resolution: "deep-equal@npm:1.1.2"
@@ -519,17 +534,6 @@ __metadata:
   version: 0.1.2
   resolution: "duplexer@npm:0.1.2"
   checksum: 10c0/c57bcd4bdf7e623abab2df43a7b5b23d18152154529d166c1e0da6bee341d84c432d157d7e97b32fecb1bf3a8b8857dd85ed81a915789f550637ed25b8e64fc2
-  languageName: node
-  linkType: hard
-
-"elasticsearch@npm:^16.0.0":
-  version: 16.7.3
-  resolution: "elasticsearch@npm:16.7.3"
-  dependencies:
-    agentkeepalive: "npm:^3.4.1"
-    chalk: "npm:^1.0.0"
-    lodash: "npm:^4.17.10"
-  checksum: 10c0/d9f1a23f18d3e091828513e68eee0d025d0753f937c5a78c14a459ed49004709e7f3c40fb86e5545bb16650ae6bf1b437b6553d489b56c51bd96329aebb9cb0d
   languageName: node
   linkType: hard
 
@@ -893,6 +897,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hpagent@npm:^0.1.1":
+  version: 0.1.2
+  resolution: "hpagent@npm:0.1.2"
+  checksum: 10c0/9faa805d318a2bc6a7b4c9791623d2cc98b9511e676cafbc258dda0e5acc4df3cedddbd87f2d01649bf790b0dc25d8c98141e7713284d5de47535abba799742a
+  languageName: node
+  linkType: hard
+
 "htmlparser2@npm:3.8.x":
   version: 3.8.3
   resolution: "htmlparser2@npm:3.8.3"
@@ -903,15 +914,6 @@ __metadata:
     entities: "npm:1.0"
     readable-stream: "npm:1.1"
   checksum: 10c0/253a673976c1e2c2b8429e45830a5a89c3f23bb6dd34f5958aefbb104a8caf1268515b535277714deb034d894aa0bd315e901cbf2ec906e8ed0d1e49b2d73b3e
-  languageName: node
-  linkType: hard
-
-"humanize-ms@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "humanize-ms@npm:1.2.1"
-  dependencies:
-    ms: "npm:^2.0.0"
-  checksum: 10c0/f34a2c20161d02303c2807badec2f3b49cbfbbb409abd4f95a07377ae01cfe6b59e3d15ac609cffcd8f2521f0eb37b7e1091acf65da99aa2a4f1ad63c21e7e7a
   languageName: node
   linkType: hard
 
@@ -1380,7 +1382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ms@npm:^2.0.0":
+"ms@npm:^2.1.3":
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: 10c0/d924b57e7312b3b63ad21fc5b3dc0af5e78d61a1fc7cfb5457edaf26326bf62be5307cc87ffb6862ef1c2b33b0233cdb5d4f01c4c958cc0d660948b65a287a48
@@ -1504,8 +1506,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "pelias-dbclient@workspace:."
   dependencies:
+    "@elastic/elasticsearch": "npm:^7.17.14"
     "@hapi/joi": "npm:^17.1.1"
-    elasticsearch: "npm:^16.0.0"
     intercept-stdout: "npm:^0.1.2"
     lodash: "npm:^4.16.0"
     pelias-config: "npm:^4.5.0"
@@ -1756,6 +1758,13 @@ __metadata:
     es-errors: "npm:^1.3.0"
     is-regex: "npm:^1.2.1"
   checksum: 10c0/f2c25281bbe5d39cddbbce7f86fca5ea9b3ce3354ea6cd7c81c31b006a5a9fff4286acc5450a3b9122c56c33eba69c56b9131ad751457b2b4a585825e6a10665
+  languageName: node
+  linkType: hard
+
+"secure-json-parse@npm:^2.4.0":
+  version: 2.7.0
+  resolution: "secure-json-parse@npm:2.7.0"
+  checksum: 10c0/f57eb6a44a38a3eeaf3548228585d769d788f59007454214fab9ed7f01fbf2e0f1929111da6db28cf0bcc1a2e89db5219a59e83eeaec3a54e413a0197ce879e4
   languageName: node
   linkType: hard
 

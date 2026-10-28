@@ -68,9 +68,9 @@ HealthCheck.prototype.setCode = function( code ){
 };
 
 HealthCheck.prototype.probe = function(){
-  this._client.cat.threadPool( { v: true, h: fields }, function( method, body){
-    if( body ){
-      this._status.threadpool = new ThreadpoolStatus( body );
+  this._client.cat.threadPool( { v: true, h: fields }, function( err, result ){
+    if( result && result.body ){
+      this._status.threadpool = new ThreadpoolStatus( result.body );
       this.evaluate();
     }
   }.bind(this));

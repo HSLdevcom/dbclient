@@ -25,7 +25,8 @@ function wrapper( client, parent_logger ){
       if (batch.mergeFields) { // optional
         mgetParam._source = batch.mergeFields;
       }
-      client.mget(mgetParam, function(error, response) {
+      client.mget(mgetParam, function(error, result) {
+        var response = result && result.body;
         // major error
         if( error ){
           logger.error( 'esclient error', error );
@@ -76,7 +77,8 @@ function wrapper( client, parent_logger ){
       }
 
       // perform bulk operation
-      client.bulk( { body: payload }, function( err, resp ){
+      client.bulk( { body: payload }, function( err, result ){
+        var resp = result && result.body;
 
         // major error
         if( err ){
